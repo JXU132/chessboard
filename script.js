@@ -83,17 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const cell1 = document.querySelector(`[data-index="${idx1}"]`);
         const cell2 = document.querySelector(`[data-index="${idx2}"]`);
 
-        const rect1 = cell1.getBoundingClientRect();
-        const rect2 = cell2.getBoundingClientRect();
-        const boardRect = boardElement.getBoundingClientRect();
-
         const domino = document.createElement('div');
         domino.classList.add('domino');
 
-        const x = Math.min(rect1.left, rect2.left) - boardRect.left;
-        const y = Math.min(rect1.top, rect2.top) - boardRect.top;
-        const width = Math.abs(rect1.left - rect2.left) + rect1.width;
-        const height = Math.abs(rect1.top - rect2.top) + rect1.height;
+        const x = Math.min(cell1.offsetLeft, cell2.offsetLeft);
+        const y = Math.min(cell1.offsetTop, cell2.offsetTop);
+        const width = Math.abs(cell1.offsetLeft - cell2.offsetLeft) + cell1.offsetWidth;
+        const height = Math.abs(cell1.offsetTop - cell2.offsetTop) + cell1.offsetHeight;
 
         domino.style.left = `${x}px`;
         domino.style.top = `${y}px`;
